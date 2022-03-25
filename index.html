@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>PHP + ES + CQRS + DDD = ? - A planned strategy</title>
-    <meta name="description" content="{{ Descrizione }}">
+    <meta name="description" content="PHP + ES + CQRS + DDD = ? An integrated strategy">
     <meta name="author" content="Alessandro Lai">
 
     <link rel="stylesheet" href="dist/reset.css">
@@ -24,25 +24,51 @@
 <div class="reveal">
     <div class="slides">
         <section id="title" data-background-image="img/theme/bg-cover.svg">
-            <h1>PHP+ES+CQRS+DDD = ?</h1>
-            <h2>A planned strategy</h2>
+            <h1>PHP + ES + CQRS + DDD = ?</h1>
+            <h2>An integrated strategy</h2>
             <p>
-                <!--                <a href="https://alessandrolai.dev/">Alessandro Lai</a> / <a href="http://twitter.com/AlessandroLai">@AlessandroLai</a><br>-->
-                <a href="https://gitlab.facile.it/pagamenti">Payments Team</a>
+                <a href="https://alessandrolai.dev/">Alessandro Lai</a> / <a href="http://twitter.com/AlessandroLai">@AlessandroLai</a><br>
             </p>
             <small>
-                    Venerdì protetto - February 25th 2022,
-                    Facile.it (online)
-                <!--                <p class="smaller">-->
-                <!--                    <a href="https://joind.in/talk/TODO-CHANGEME">https://joind.in/talk/TODO-CHANGEME</a>-->
-                <!--                </p>-->
+                    PHPDay - May 20th 2022,
+                    Verona
+                    <p class="smaller">
+                        <a href="https://joind.in/talk/TODO-CHANGEME">https://joind.in/talk/TODO-CHANGEME</a>
+                    </p>
             </small>
         </section>
 
         <section id="intro">
-            <section data-background-color="white">
-                <h2>Who are we?</h2>
-                <img src="img/team_roster.svg" alt="The speakers team" width="80%"/>
+            <section>
+                <h2>Who am I?</h2>
+                <img src="img/github_avatar.jpg" class="avatar" width="30%">
+                <div style="float: right; padding-top: 2em">
+                    <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-user"></i></span>Alessandro Lai</li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-desktop"></i></span>
+                            Engineering manager @ Facile.it
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fab fa-github"></i></span>
+                            <a target="_blank" href="https://github.com/Jean85">@Jean85</a>
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fab fa-twitter"></i></span>
+                            <a target="_blank" href="https://twitter.com/AlessandroLai">@AlessandroLai</a>
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-users"></i></span>
+                            PHP UG Milan Coordinator
+                        </li>
+                        <li>
+                            <span class="fa-li">
+                                <i class="fas fa-certificate"></i>
+                            </span>
+                            PHP-FIG Secretary
+                        </li>
+                    </ul>
+                </div>
             </section>
         </section>
 
@@ -52,78 +78,99 @@
                     <li class="current">Base concepts</li>
                     <li>Our starting point</li>
                     <li>The tools</li>
-                    <li>Our migration strategy</li>
+                    <li>The migration strategy</li>
                     <li>Conclusions</li>
                 </ol>
             </section>
 
-            <section>
-                <h3>Do we start from here?</h3>
-                <p>Some meetings, gather some requisites, Google... and the straight to coding!</p>
-                <img
-                        class="r-stretch"
-                        src="img/hands-coding.png"
-                        width="500"
-                        alt="We start from coding?"
-                />
+            <section data-background="img/hands-coding.png">
+                <h3 style="color: white; margin-top: 7em; text-align: left">Normally, <br>we reach immediately to code...</h3>
+            </section>
+            <section data-background="img/domain-and-devs_1.png">
             </section>
             <section>
-                <h3>No! We should start from here</h3>
-                <p>We need to create a task force of Business & Devs</p>
-                <img
-                        class="r-stretch"
-                        src="img/domain-and-devs_1.png"
-                        alt="We start with Domains expert and Developers"
-                />
-            </section>
-            <section>
-                <h3>Next steps?</h3>
-                <p>We recognized the problem, how do we solve it?</p>
+                <h3>Common approaches</h3>
+                <p>We focused the problem, now how do we solve it?</p>
                 <img
                         class="r-stretch"
                         src="img/which-approach.png"
                         alt="We start with Domains expert and Developers"
                 />
-                <p>"The context is the King" -- cit. A.Brandolini </p>
+                <p>"The context is King"</p>
+                <small><i>A.Brandolini</i></small>
             </section>
             <section>
                 <h3>Data-oriented development</h3>
-                <div style="width: 45%; margin: auto">
-                    <p style="text-align: left">
-                        ⛔ ️Cons<br>
-                        - Not suitable for complex problems<br>
-                        - Difficult to evolve<br>
-                        - Not very expressive<br>
-                    </p>
-                    <p style="text-align: left">
-                        ✅ Pro<br>
-                        - Fast<br>
-                        - Minimal effort<br>
-                        - Proven development mode<br>
-                    </p>
+                <div>
+                    <p>⛔ Cons</p>
+                    <ul class="fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-cogs"></i></span>
+                            Not suitable for complex problems
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-project-diagram"></i></span>
+                            Difficult to evolve
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-wrench"></i></span>
+                            Not very expressive
+                        </li>
+                    </ul>
+                    <p>✅ Pro</p>
+                    <ul class="fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-shipping-fast"></i></span>
+                            Fast
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-couch"></i></span>
+                            Minimal effort
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-laptop-code"></i></span>
+                            Proven development mode
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section>
                 <h3>Business-oriented development</h3>
-                <p>In Pagamenti 2 💰 We have chosen this! 💪🏼</p>
-                <div style="width: 45%; margin: auto">
-                    <p style="text-align: left">
-                        ⛔ ️Cons<br>
-                        - More initial effort<br>
-                        - No suitable for simple problems<br>
-                        - Needs discipline<br>
-                    </p>
-                    <p style="text-align: left">
-                        ✅ Pro<br>
-                        - Suitable for complex problem<br>
-                        - More expressive<br>
-                        - More flexible<br>
-                    </p>
+                <div>
+                    <p>⛔ Cons</p>
+                    <ul class="fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-hourglass-start"></i></span>
+                            More effort upfront
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check-double"></i></span>
+                            Not suitable for simple problems
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-user-ninja"></i></span>
+                            Needs discipline
+                        </li>
+                    </ul>
+                    <p>✅ Pro</p>
+                    <ul class="fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-cogs"></i></span>
+                            Suitable for complex problems
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-people-arrows"></i></span>
+                            More expressive
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-expand-arrows-alt"></i></span>
+                            More flexible
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section>
                 <h3>The evolution of DDD - CQRS - CQRS/ES</h3>
-                <p style="font-size: smaller;">Three main authors: Evans, Fowler, Young | Brandolini, Dymitruk</p>
                 <img
                         class="stretch"
                         style="margin: 0"
@@ -137,17 +184,43 @@
                         https://eventmodeling.org/about/history.jpg
                     </a>
                 </small>
-                <aside class="notes">
-                    La timeline ci racconta l'evoluzione
-                    <br>
-                    A sinsitra tool tattici 
-                    <br>
-                    A destra tool strategici 
-                </aside>
             </section>
             <section>
+                <h3>The workshop</h3>
+                <table>
+                    <tr>
+                        <td style="text-align: center; vertical-align: top">
+                            <img src="img/marco.png" alt="Marco Heimeshoff"/>
+                            <br>
+                            <br><br>
+                            <small>
+                            </small>
+                        </td>
+                        <td>
+                            <ul class="fa-ul" style="margin-top: 1em">
+                                <li style="margin-bottom: 1em">
+                                    <span class="fa-li"><i class="fas fa-chalkboard-teacher"></i></span>
+                                    <a href="https://www.avanscoperta.it/it/training/domain-models-in-practice-ddd-cqrs-event-sourcing/">
+                                        Domain Models in practice:<br>
+                                        DDD, CQRS & Event Sourcing
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="fa-li"><i class="fab fa-twitter"></i></span>
+                                    <a href="https://twitter.com/Heimeshoff">
+                                        @Heimeshoff
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <section>
+            <section>
                 <h3>Domain Driven Design</h3>
-                <p style="font-size: smaller">Domain Expert 👉🏽 <span style="text-decoration: underline;">Ubiquitous language</span> 👈🏽 Developer</p>
+                <aside class="notes">Domain Expert 👉🏽 Ubiquitous language 👈🏽 Developer</aside>
                 <img
                         src="img/ddd.png"
                         alt="DDD simplified"
@@ -156,7 +229,7 @@
 
             <section>
                 <h3>Domain Driven Design + CQRS </h3>
-                <p><span style="text-decoration: underline;">Write</span> / <span style="text-decoration: underline;">Read</span> path | <span style="text-decoration: underline;">Commands</span> as <span style="text-decoration: underline;">Business concepts</span> </p>
+                <aside class="notes">Write / Read path <br>Commands as Business concepts</aside>
                 <img
                         src="img/cqrs.png"
                         alt="CQRS simplified"
@@ -166,18 +239,13 @@
 
             <section>
                 <h3>Domain Driven Design + CQRS/ES </h3>
-                <p><span style="text-decoration: underline;">Events</span> as  <span style="text-decoration: underline;">Business concepts</span> and unique <span style="text-decoration: underline;">source of truth</span></p>
+                <aside class="notes">Events as Business concepts and unique source of truth</aside>
                 <img
                         src="img/cqrs_es.png"
                         alt="CQRS/ES simplified"
                 />
             </section>
 
-
-            <section>
-                <h3>DDD general overview</h3>
-                <img class="stretch" src="img/all-concepts.png" alt="All concepts"/>
-            </section>
             <section>
                 <h3>The goal! ⚽️</h3>
                 <ul class="fa-ul">
@@ -211,57 +279,24 @@
                     <li>Base concepts</li>
                     <li class="current">Our starting point</li>
                     <li>The tools</li>
-                    <li>Our migration strategy</li>
+                    <li>The migration strategy</li>
                     <li>Conclusions</li>
                 </ol>
             </section>
             <section>
-                <h3>Pagamenti 2</h3>
-                <ul>
-                    <p>
-                        Provide a homogeneous interface for managing different payment and
-                        purchasing methods
-                    </p>
-                    <div>   
-                    <span style="float: left; width: 30%;">    
-                        <p>How does it work?</p>
-                    </span>
-                        <span style="float: right;  width: 70%;">           
-                        <img style="float: left" src="img/seq-diagram-payment.png" alt="Payment"/>
-                    </span>
+                <h3>Scenario</h3>
+                <p>Adding a new payment method to our payments service provider</p>
+                <div class="graph">
+                    <span>Product (aggregate root)</span>
+                    <div>
+                        <i class="fas fa-angle-down"></i> 1..n
+                        <span>Orders</span>
+                        <i class="fas fa-angle-down"></i> 0..n
+                        <span>Payment type A</span>
+                        <span class="fragment fade-up">NEW: Payment type B</span>
                     </div>
-            </section>
-            <section>
-                <h3>Aggregate & entities involved</h3>
-                <div style="margin-top: 2em;">
-                    <span style="float: left; width: 50%; font-size: x-large;">
-                        <div class="stretch graph">
-                            <span>Product (root)</span>
-                            <div>
-                                <i class="fas fa-angle-down"></i> 1..n
-                                <span>Orders</span>
-                                <i class="fas fa-angle-down"></i> 0..n
-                                <span>Payment reservations</span>
-                            </div>
-                        </div>
-                    </span>
-                    <span style="float: right;  width: 50%;">            
-                        <p>                
-                            <p>Are entities immutable?</p>
-                            <p>What about state management?</p>
-                        </p>
-                    </span>
                 </div>
-                <aside class="notes">
-
-                </aside>
             </section>
-            <section>
-                <h3>Decommissioning Sisal from api.facile.it</h3>
-                <p>Why incorporate it?</p>
-                <p>Opportunity of limited area of intervention</p>
-            </section>
-        </section>
         </section>
 
         <section id="section-tools">
@@ -270,7 +305,7 @@
                     <li>Base concepts</li>
                     <li>Our starting point</li>
                     <li class="current">The tools</li>
-                    <li>Our migration strategy</li>
+                    <li>The migration strategy</li>
                     <li>Conclusions</li>
                 </ol>
             </section>
@@ -823,7 +858,7 @@ class OrdersReadModel implements MessageConsumer
                     <li>Base concepts</li>
                     <li>Our starting point</li>
                     <li>The tools</li>
-                    <li class="current">Our migration strategy</li>
+                    <li class="current">The migration strategy</li>
                     <li>Conclusions</li>
                 </ol>
             </section>
@@ -843,10 +878,8 @@ class OrdersReadModel implements MessageConsumer
                         <i class="fas fa-angle-down"></i> 1..n
                         <span>Orders</span>
                         <i class="fas fa-angle-down"></i> 0..n
-                        <span>Payment reservations</span>
-                        <i class="fas fa-angle-down"></i> 0..1
                     </div>
-                    <span class="fragment" data-fragment-index="1">Mooney codes</span>
+                    <span class="fragment" data-fragment-index="1">NEW: Payment type B</span>
                 </div>
                 <aside class="notes">
                     <ol>
@@ -864,47 +897,24 @@ class OrdersReadModel implements MessageConsumer
                     "You have a single source of truth,
                     or multiple sources of lies"
                 </small>
+                <small>(source: RT from <i class="fab fa-twitter"></i> <a href="https://twitter.com/jennplusplus/status/1486188335269920771">@mipsytipsy</a>)</small>
             </section>
             <section>
                 <h3>The great workshop take-away</h3>
-                <table>
-                    <tr>
-                        <td style="text-align: center; vertical-align: top">
-                            <img src="img/marco.png" alt="Marco Heimeshoff"/>
-                            <br>
-                            <i class="fab fa-twitter"></i>
-                            <a href="https://twitter.com/Heimeshoff">
-                                @Heimeshoff
-                            </a>
-                            <br><br>
-                            <small>
-                            </small>
-                        </td>
-                        <td>
-                            <ul class="fa-ul" style="margin-top: 1em">
-                                <li style="margin-bottom: 1em">
-                                    <span class="fa-li"><i class="fas fa-chalkboard-teacher"></i></span>
-                                    <a href="https://www.avanscoperta.it/it/training/domain-models-in-practice-ddd-cqrs-event-sourcing/">
-                                        Domain Models in practice:<br>
-                                        DDD, CQRS & Event Sourcing
-                                    </a>
-                                </li>
-                                <li class="fragment">
-                                    <span class="fa-li"><i class="fas fa-database"></i></span>
-                                    DB transactions to save data atomically
-                                </li>
-                                <li class="fragment">
-                                    <span class="fa-li"><i class="fas fa-sync"></i></span>
-                                    Sync between legacy tables and event store
-                                </li>
-                                <li class="fragment">
-                                    <span class="fa-li"><i class="fas fa-clock"></i></span>
-                                    Migrating will take a LONG time
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
+                <ul class="fa-ul" style="margin-top: 1em">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-database"></i></span>
+                        DB transactions to save data atomically
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-sync"></i></span>
+                        Sync between legacy tables and event store
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-clock"></i></span>
+                        Only downside: migrating will take longer
+                    </li>
+                </ul>
             </section>
             <section>
                 <h3>Generating events on-the-fly</h3>
@@ -937,19 +947,19 @@ class ProductRepository
 {
     // ...
 
-    public function reservePayment(ReservePayment $command): void
+    public function reservePHPayment(ReservePayment $command): void
     {
         if (/* ... */) {
             // domain logic & validation...
         }
 
-        $event = new MooneyCodeCreated(/* ... */);
+        $event = new PHPaymentReservationCreated(/* ... */);
 
         // add the event to the aggregate
         $this->recordThat($event);
 
         // register the same stuff in the Doctrine entity
-        $this->getDoctrineProduct()->addNewCode($event)
+        $this->getDoctrineProduct()->addNewReservation($event)
     }
 
     // ...
@@ -958,16 +968,16 @@ class ProductRepository
             <section>
                 <h3>Maintain the Doctrine tables (2/2)</h3>
                 <pre class="stretch">
-<code class="language-php">class ReservePaymentHandler implements MessageHandlerInterface
+<code class="language-php">class ReservePHPaymentHandler implements MessageHandlerInterface
 {
-    public function __invoke(ReservePayment $command): void
+    public function __invoke(ReservePHPayment $command): void
     {
         $id = $command->getRootId();
         // retrieve both the aggregate and the Doctrine entity
         $product = $this->productRepository->retrieve($id);
 
         // invoke the domain logic
-        $product->reservePayment($command);
+        $product->reservePHPayment($command);
 
         // atomic flush due to single DB connection
         $this->doctrineRepository->beginTransaction();
@@ -1011,7 +1021,7 @@ class ProductRepository
                     <li>Base concepts</li>
                     <li>Our starting point</li>
                     <li>The tools</li>
-                    <li>Our migration strategy</li>
+                    <li>The migration strategy</li>
                     <li class="current">Conclusions</li>
                 </ol>
             </section>
@@ -1032,7 +1042,7 @@ class ProductRepository
                     </li>
                     <li class="fragment">
                         <span class="fa-li"><i class="fas fa-database"></i></span>
-                        Doctrine still works
+                        Old code still works
                     </li>
                     <li class="fragment">
                         <span class="fa-li"><i class="fas fa-hourglass-half"></i></span>
@@ -1050,17 +1060,14 @@ class ProductRepository
                     <li>It may take a long time</li>
                     <li class="fragment">...can you tell us more?</li>
                 </ol>
-                <br>
-                <br>
-                <br>
-                <h1 class="fragment">Questions?</h1>
-            </section>
-            <section>
-                <h2>Thanks!</h2>
-                <!--                <p>-->
-                <!--                    Please rate my talk on Joind.in: <a href="https://joind.in/talk/TODO-CHANGEME">https://joind.in/talk/TODO-CHANGEME</a>-->
-                <!--                </p>-->
-                <!--                <img class="stretch" src="img/joindin-qr.png" alt="Joind.in link: https://joind.in/talk/TODO-CHANGEME">-->
+                <div class="fragment">
+                    <h2>Thanks!</h2>
+                    <p>
+                        Please rate my talk on Joind.in: <a href="https://joind.in/talk/TODO-CHANGEME">https://joind.in/talk/TODO-CHANGEME</a>
+                    </p>
+                    <img class="stretch" src="img/joindin-qr.png" alt="Joind.in link: https://joind.in/talk/TODO-CHANGEME">
+                    <h1 class="fragment">Questions?</h1>
+                </div>
             </section>
             <!--            <section>-->
             <!--                <h2 style="margin-bottom: 2em">Questions?</h2>-->
