@@ -70,6 +70,9 @@
                     </ul>
                 </div>
             </section>
+            <section data-background-color="white">
+                <img src="img/team_roster.svg" alt="Payments team roster" />
+            </section>
         </section>
 
         <section id="section-base-concepts">
@@ -296,7 +299,7 @@
                         <span>Orders</span>
                         <i class="fas fa-angle-down"></i> 0..n
                         <span>Payment type A</span>
-                        <span class="fragment fade-up">NEW: Payment type B</span>
+                        <span class="fragment fade-up">NEW: PHPayment 🐘</span>
                     </div>
                 </div>
             </section>
@@ -554,7 +557,7 @@ final class ProductCreated implements SerializablePayload
         ];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new self(
             ProductId::fromString($payload['productId']),
@@ -882,7 +885,7 @@ class OrdersReadModel implements MessageConsumer
                         <span>Orders</span>
                         <i class="fas fa-angle-down"></i> 0..n
                     </div>
-                    <span class="fragment" data-fragment-index="1">NEW: Payment type B</span>
+                    <span class="fragment" data-fragment-index="1">NEW: PHPayment 🐘</span>
                 </div>
                 <aside class="notes">
                     <ol>
