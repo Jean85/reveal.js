@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>API contracts - Leveraging OpenAPI during API development - Alessandro Lai</title>
-    <meta name="description" content="Slides for the SFDay@127.0.0.1 2021 talk">
+    <title>Come sfruttare OpenAPI durante lo sviluppo di un API in PHP - Alessandro Lai</title>
+    <meta name="description" content="Slides per il meetup PUGMI di aprile 2022">
     <meta name="author" content="Alessandro Lai">
 
     <link rel="stylesheet" href="dist/reset.css">
@@ -20,35 +20,30 @@
 <div class="reveal">
     <div class="slides">
         <section id="title" data-background-image="img/theme/bg-cover.svg">
-            <h1 style="white-space: nowrap">API contracts</h1>
-            <h3>
-                Leveraging OpenAPI<br/>
-                during API development
-            </h3>
+            <h3>Come sfruttare</h3>
+            <h1>OpenAPI</h1>
+            <h3>durante lo sviluppo di un API in PHP</h3>
             <p>
                 <a target="_blank" href="https://alessandrolai.dev/">Alessandro Lai</a> / <a target="_blank" href="http://twitter.com/AlessandroLai">@AlessandroLai</a><br>
             </p>
             <small>
                 <p>
-                    <a target="_blank" href="https://2021.sfday.it/">sfday @ 127.0.0.1</a> - May 13th 2021,
-                    Online
-                </p>
-                <p class="smaller">
-                    <a target="_blank" href="https://joind.in/talk/39cea">https://joind.in/talk/39cea</a>
+                    <a target="_blank" href="https://www.meetup.com/it-IT/MilanoPHP/events/284647096/">PUG Milano</a> - 20 aprile 2022,<br>
+                    Facile.it HQ / Online
                 </p>
             </small>
         </section>
 
         <section id="intro">
             <section>
-                <h2>Who am I?</h2>
+                <h2>Chi sono?</h2>
                 <img src="img/github_avatar.jpg" class="avatar" width="30%">
                 <div style="float: right; padding-top: 2em">
                     <ul class="fa-ul">
                         <li><span class="fa-li"><i class="fas fa-user"></i></span>Alessandro Lai</li>
                         <li>
                             <span class="fa-li"><i class="fas fa-desktop"></i></span>
-                            Team lead developer @ Facile.it
+                            Engineering Manager @ Facile.it
                         </li>
                         <li>
                             <span class="fa-li"><i class="fab fa-github"></i></span>
@@ -60,7 +55,7 @@
                         </li>
                         <li>
                             <span class="fa-li"><i class="fas fa-users"></i></span>
-                            PHP UG Milan Coordinator
+                            PUGMI Coordinator
                         </li>
                         <li>
                             <span class="fa-li">
@@ -266,7 +261,7 @@ paths:
                 <h3>The "magic" approach</h3>
                 <i class="fab fa-github"></i>
                 <a target="_blank" href="https://github.com/nelmio/NelmioApiDocBundle">NelmioApiDocBundle</a>
-                <pre class="stretch"><code>/**
+                <pre class="stretch php"><code>/**
  * List the rewards of the specified user.
  *
  * This call takes into account all confirmed awards, but not pending or refused awards.
@@ -527,18 +522,9 @@ return new JsonResponse($problem->asArray(), Response::HTTP_BAD_REQUEST);</code>
 
         <section id="ending">
             <section>
-                <h2>Thanks!</h2>
-                <p>
-                    Please rate my talk on Joind.in: <a target="_blank" href="https://joind.in/talk/39cea">https://joind.in/talk/39cea</a>
-                </p>
-                <img class="stretch" src="img/joindin-qr.png" alt="Joind.in link: https://joind.in/talk/39cea">
-                <aside class="notes">
-                    45:00
-                </aside>
-            </section>
-            <section>
-                <h2 style="margin-bottom: 2em">Questions?</h2>
-                <h4>Contacts</h4>
+                <h2>Grazie per l'attenzione!</h2>
+                <h3 style="margin-bottom: 2em">Domande?</h3>
+                <h4>Contatti</h4>
                 <div style="font-size: smaller">
                     <ul class="fa-ul">               
                         <li>
@@ -580,7 +566,7 @@ return new JsonResponse($problem->asArray(), Response::HTTP_BAD_REQUEST);</code>
     // - https://revealjs.com/config/
     Reveal.initialize({
         hash: true,
-        width: 1160,
+        width: 1280,
         height: 720,
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [
