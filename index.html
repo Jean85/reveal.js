@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="dist/theme/facile-engineering.css" id="theme">
     <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico"/>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai-sublime.min.css">
 </head>
 <body>
 <div class="reveal">
@@ -141,7 +144,7 @@
             </section>
             <section>
                 <h3>Beware, here be YAML</h3>
-                <pre class="stretch"><code>openapi: 3.0.3
+                <pre class="stretch yaml"><code>openapi: 3.0.3
 info:
   title: Test API for Facile.it
   version: '1.0'
@@ -233,7 +236,7 @@ paths:
                 <h3>OpenApi.tools</h3>
                 <p>
                     <a target="_blank" href="https://openapi.tools">
-                        <img class="stretch" src="img/openapi-tools.png" alt="Openapi.tools site screenshot" style="display: block"/>
+                        <img class="stretch" src="img/openapi-tools.png" alt="Openapi.tools site screenshot" style="display: block; margin: 0 auto"/>
                     </a>
                 </p>
             </section>
@@ -558,7 +561,7 @@ return new JsonResponse($problem->asArray(), Response::HTTP_BAD_REQUEST);</code>
 
 <script src="dist/reveal.js"></script>
 <script src="plugin/notes/notes.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/zoom/zoom.js"></script>
 <script>
     // More info about initialization & config:
@@ -570,7 +573,7 @@ return new JsonResponse($problem->asArray(), Response::HTTP_BAD_REQUEST);</code>
         height: 720,
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [
-            RevealHighlight,
+            RevealMarkdown,
             RevealNotes,
             RevealZoom
         ]
