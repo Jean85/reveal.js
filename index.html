@@ -496,11 +496,9 @@ $problem = new ApiProblem("You do not have enough credit.", "http://example.com/
 $problem
   ->setDetail("Your current balance is 30, but that costs 50.")
   ->setInstance("http://example.net/account/12345/msgs/abc");
+// Additional properties can be used with array access
 $problem['balance'] = 30;
-$problem['accounts'] = [
-  "http://example.net/account/12345",
-  "http://example.net/account/67890"
-];
+$problem['accounts'] = ["http://example.net/account/12345", "http://example.net/account/67890"];
 
 return new JsonResponse($problem->asArray(), Response::HTTP_BAD_REQUEST);</code></pre>
             </section>
