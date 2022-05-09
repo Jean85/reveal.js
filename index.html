@@ -316,14 +316,24 @@
                 </ol>
             </section>
             <section>
-                <h3>The DDD "onion"</h3>
+                <h3>The DDD "onion" / layers</h3>
                 <img
                         class="r-stretch"
-                        src="img/ddd-onion.png"
+                        src="img/layers.png"
                         width="47%"
-                        alt="DDD Onion - Jeffrey Palermo"
+                        alt="DDD layers"
                 />
+                <div>
+                    <small>
+                        Cfr. "Implementing Domain-Driven Design" - V.Vernon (the so-called "Red Book")<br/>
+                        Figure 4.3, page 124
+                    </small>
+                </div>
                 <aside class="notes">
+                        "Nothing in an inner circle can know anything at all about
+                        something in an outer circle.<br>
+                        That includes functions, classes, variables, or any other named software entity."<br>
+                        Robert C. Martin
                     <ul>
                         <li>1. aggregati e logica dominio</li>
                         <li>2. usano gli aggregati e transizioni</li>
@@ -375,34 +385,6 @@
                         </ul>
                     </ul>
                 </aside>
-            </section>
-            <section>
-                <table>
-                    <tr>
-                        <td width="40%">
-                            <img src="img/ddd-onion-2.png"/>
-                        </td>
-                        <td style="vertical-align: top; text-align: center">
-                            <blockquote style="display: block; padding: 2em 1em">
-                                <em>
-                                    "Nothing in an inner circle can know anything at all about
-                                    something in an outer circle.<br>
-                                    That includes functions, classes, variables, or any other named software entity."
-                                </em>
-                            </blockquote>
-                            <small>
-                                Robert C. Martin
-                            </small>
-                        </td>
-                    </tr>
-                </table>
-                <aside class="notes">
-                    <ul>
-                        <li>INFRASTRUCTURE/DOMAIN/APPLICATION</li>
-                        <li>analisi statica architettura?</li>
-                    </ul>
-                </aside>
-
             </section>
             <section>
                 <aside class="notes">
