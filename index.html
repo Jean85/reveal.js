@@ -403,15 +403,15 @@
     public function testCoreDomainDependencies(): Rule
     {
         return $this->newRule
-            ->classesThat(ClassSelector::domainClasses(ClassSelector::CONTEXT_CORE))
+          ->classesThat(Selector::haveClassName('Facile\Domain\*'))
 
-            ->canOnlyDependOn()
+          ->canOnlyDependOn()
 
-            ->classesThat(ClassSelector::domainClasses(ClassSelector::CONTEXT_CORE))
-            ->classesThat(Selector::haveClassName(Assert::class))
-            ->classesThat(Selector::haveClassName(UuidInterface::class))
+          ->classesThat(Selector::haveClassName('Facile\Domain\*'))
+          ->classesThat(Selector::haveClassName(\Webmozart\Assert::class))
+          ->classesThat(Selector::haveClassName(\Ramsey\Uuid\UuidInterface::class))
 
-            ->build();
+          ->build();
     }
 }</code></pre>
             </section>
