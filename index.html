@@ -74,9 +74,22 @@
                 <h3>Nearly 10 years in Facile.it..</h3>
             </section>
             <section>
-                <h3>Experience timeline</h3>
+                <h3>Experience timeline (2)</h3>
                 <ul>
                     <li>First project</li>
+                    <li>Need for a queue: why? latency, resilience</li>
+                </ul>
+                <h3>Why do you need a queue?</h3>
+                <ul>
+                    <li>Long elaborations</li>
+                    <li>Delaying an action/check</li>
+                    <li>Handling external deps</li>
+                    <li>Concatenation of HTTP calls lead to low reliability</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Experience timeline (2)</h3>
+                <ul>
                     <li>Need for a queue: RabbitMQ</li>
                     <li>Many difficulties (PHP 5.4, ext-amqp, low support)</li>
                     <li>Lead on new project, ported same features</li>
@@ -96,21 +109,14 @@
 
         <section>
             <section>
-                <h3>Why do you need a queue?</h3>
-                <ul>
-                    <li>Long elaborations</li>
-                    <li>Delaying an action/check</li>
-                    <li>Handling external deps</li>
-                    <li>Concatenation of HTTP calls lead to low reliability</li>
-                </ul>
             </section>
             <section>
                 <h3>How to use Messenger</h3>
                 <ul>
                     <li>composer install</li>
+                    <li>messenger.yaml</li>
                     <li>dispatch</li>
                     <li>message + handler</li>
-                    <li>messenger.yaml</li>
                 </ul>
             </section>
             <section>
