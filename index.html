@@ -43,11 +43,7 @@
                         <li><span class="fa-li"><i class="fas fa-user"></i></span>Alessandro Lai</li>
                         <li>
                             <span class="fa-li"><i class="fas fa-desktop"></i></span>
-                            Head of Platform
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-desktop"></i></span>
-                            Software Engineer @ Facile.it since 2014
+                            Head of Platform @ Facile.it
                         </li>
                         <li>
                             <span class="fa-li"><i class="fab fa-github"></i></span>
@@ -70,40 +66,57 @@
                     </ul>
                 </div>
             </section>
-            <section>
-                <h3>Nearly 10 years in Facile.it..</h3>
+            <section data-background-image="img/seen_things.gif">
+                <h3 style="padding-bottom: 3em">Nearly 10 years in Facile.it..</h3>
             </section>
             <section>
-                <h3>Experience timeline (2)</h3>
+                <h3>First project...</h3>
                 <ul>
-                    <li>First project</li>
-                    <li>Need for a queue: why? latency, resilience</li>
+                    <li>Simple (but big) Symfony 2 app</li>
+                    <li>Classic LAMP stack</li>
+                    <li>Bare metal hosting, external sysadmins</li>
                 </ul>
-                <h3>Why do you need a queue?</h3>
+            </section>
+            <section>
+                <h3>The need for a queue</h3>
                 <ul>
                     <li>Long elaborations</li>
                     <li>Delaying an action/check</li>
                     <li>Handling external deps</li>
-                    <li>Concatenation of HTTP calls lead to low reliability</li>
+                    <li>Concatenation of HTTP calls leads to low reliability</li>
                 </ul>
             </section>
             <section>
-                <h3>Experience timeline (2)</h3>
+                <h3>The first experiment: MySQL</h3>
                 <ul>
-                    <li>Need for a queue: RabbitMQ</li>
-                    <li>Many difficulties (PHP 5.4, ext-amqp, low support)</li>
-                    <li>Lead on new project, ported same features</li>
+                    <li>A dedicated table</li>
+                    <li>One row, one job</li>
+                    <li>A column acting as a "lock"</li>
+                    <li>A <code>SELECT FOR UPDATE</code> query</li>
+                    <li class="fragment">...up to 2 hours of delay on slave nodes</li>
                 </ul>
             </section>
             <section>
-                <h3>Then, Symfony Messenger</h3>
+                <h3>The real queue: RabbitMQ</h3>
                 <ul>
-                    <li>SymfonyCon ref</li>
-                    <li>Everything out of the box</li>
+                    <li>PHP 5.4</li>
+                    <li><code>ext-amqp</code> was not stable</li>
+                    <li>OldSoundBundle too</li>
+                    <li>So, we wrote our own system</li>
                 </ul>
             </section>
             <section>
-                <h3>MR with much code removal</h3>
+                <h3>Other projects...</h3>
+                <ul>
+                    <li>New, separate project</li>
+                    <li>Different DB (Mongo)</li>
+                    <li>No time to extract a package</li>
+                </ul>
+            </section>
+            <section data-background-image="img/symfonycon-2019.png">
+            </section>
+            <section data-background-image="img/symfonycon-ryan.jpg" data-background-position="top">
+                <img src="img/mr-diff.png" class="fragment" style="width: 600px; padding-bottom: 300px">
             </section>
         </section>
 
