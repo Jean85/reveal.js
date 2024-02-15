@@ -28,7 +28,7 @@
             <p>
                 <a target="_blank" href="https://alessandrolai.dev/">Alessandro Lai</a> / <a target="_blank" href="https://phpc.social/@alessandrolai">@AlessandroLai@phpc.social</a><br>
                 <small>
-                        <a target="_blank" href="https://2024.phpday.it">phpday 2024</a>16th-17th May 2024<br>
+                        <a target="_blank" href="https://2024.phpday.it">phpday 2024</a> - 16th-17th May 2024<br>
                         Verona
                 </small>
             </p>
@@ -66,6 +66,11 @@
                     </ul>
                 </div>
             </section>
+        </section>
+        <section>
+            <section>
+                <h1>Story time...</h1>
+            </section>
             <section data-background-image="img/seen_things.gif">
                 <h3 style="padding-bottom: 3em">Nearly 10 years in Facile.it..</h3>
             </section>
@@ -93,7 +98,7 @@
                     <li>One row, one job</li>
                     <li>A column acting as a "lock"</li>
                     <li>A <code>SELECT FOR UPDATE</code> query</li>
-                    <li class="fragment">...up to 2 hours of delay on slave nodes</li>
+                    <li class="fragment">...up to 2 hours of delay on replica nodes</li>
                 </ul>
             </section>
             <section>
@@ -122,55 +127,265 @@
 
         <section>
             <section>
+                <h1>Usage</h1>
             </section>
             <section>
-                <h3>How to use Messenger</h3>
-                <ul>
-                    <li>composer install</li>
-                    <li>messenger.yaml</li>
-                    <li>dispatch</li>
-                    <li>message + handler</li>
-                </ul>
+                <h2>Installation</h2>
+                <pre><code>$ composer require symfony/messenger</code></pre>
+                With Symfony Flex, you'll get the recipe
             </section>
             <section>
-                <h3>Making the real work: async transport</h3>
+                <code>packages/messenger.yaml</code>
+                <pre class="stretch"><code>framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # failed: 'doctrine://default?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+            # 'App\Message\YourMessage': async
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'
+</code></pre>
             </section>
             <section>
-                <h3>The consumer</h3>
+                <h3>Dispatching a message</h3>
+                <pre><code>class CompressImage
+{
+    public function __construct(
+        public readonly int $imageId,
+    ) {}
+}</code></pre>
+                <pre><code>#[AsController]
+class FooController
+{
+    public function __construct(
+        private readonly MessageBusInterface $messageBus,
+    ) { }
+
+    #[Route(name: 'dispatch', path: '/dispatch', methods: ['POST'])]
+    public function dispatch(): Response
+    {
+        $this->messageBus->dispatch(new CompressImage(random_int(1, 9999)));
+        
+        return new Response('Ok');
+    }
+}</code></pre>
+            </section>
+            <section>
+                <h3>Making the real work: async transports</h3>
+                RabbitMQ: <code>symfony/amqp-messenger</code>
+                <pre><code># MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages</code></pre>
+                Doctrine/DBAL: <code>symfony/doctrine-messenger</code>
+                <pre><code># MESSENGER_TRANSPORT_DSN=doctrine://default</code></pre>
+                Redis: <code>composer require symfony/redis-messenger</code>
+                <pre><code># MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages</code></pre>
+                For more, you can use Enqueue <br/> through <code>sroze/messenger-enqueue-transport</code>
+            </section>
+            <section>
+                <h3>Consuming a message</h3>
+                <pre><code>#[AsMessageHandler]
+class CompressImageHandler
+{
+    public function __invoke(CompressImage $message): void
+    {
+        $image = $this->imageRepository->find($message->imageId);
+        
+        if ($image === null) {
+            throw new UnrecoverableMessageHandlingException('Image does not exists');
+        }
+        
+        // ...
+    }
+}</code></pre>
+                <pre><code>$ bin/console messenger:consume async -vv</code></pre>
             </section>
         </section>
         
         <section>
             <section>
-                <h3>Advanced features (that I already had)</h3>
-                <ul>
-                    <li>delayed messages</li>
-                    <li>retries</li>
-                    <li>exponential backoff</li>
-                    <li>failure queue</li>
-                    <li>routing</li>
-                </ul>
+                <h1>Advanced features</h1>
             </section>
             <section>
-                <h3>Advanced consumer usages</h3>
-                <ul>
-                    <li>using one consumer for all queues</li>
-                    <li>using queues for distributing load</li>
-                    <li>using queues for priority</li>
-                    <li>limits (memory, messages, time)</li>
-                    <li>Autoscale example</li>
-                </ul>
+                <h3>Envelope and stamps</h3>
+                <pre><code>use Symfony\Component\Messenger\Envelope;
+use Symfony\Component\Messenger\Stamp\SerializerStamp;
+
+$bus->dispatch(
+    (new Envelope($message))->with(new SerializerStamp([
+        // groups are applied to the whole message, so make sure
+        // to define the group for every embedded object
+        'groups' => ['my_serialization_groups'],
+    ]))
+);</code></pre>
+                <pre class="fragment"><code>use Symfony\Component\Messenger\Stamp\DelayStamp;
+
+$bus->dispatch($message, [new DelayStamp(3000)]);</code></pre>
+            </section>
+            <section>
+                <h3>Automatic retries</h3>
+                <pre class="stretch"><code># config/packages/messenger.yaml
+framework:
+    messenger:
+        transports:
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+
+                # default configuration
+                retry_strategy:
+                    max_retries: 3
+
+                    # milliseconds delay
+                    delay: 1000
+
+                    # causes the delay to be higher before each retry
+                    # e.g. 1 second delay, 2 seconds, 4 seconds
+                    multiplier: 2
+                    max_delay: 0
+
+                    # override all of this with a service that implements
+                    # Symfony\Component\Messenger\Retry\RetryStrategyInterface
+                    service: Facile\Messenger\CustomRetryStrategy</code></pre>
+            </section>
+            <section>
+                <h3>Failed transport</h3>
+                <pre><code># config/packages/messenger.yaml
+framework:
+    messenger:
+        # after retrying, messages will be sent to the "failed" transport
+        failure_transport: failed
+
+        transports:
+            # ... other transports
+
+            failed: 'doctrine://default?queue_name=failed'</code></pre>
+                <pre><code>$ bin/console messenger:failed:show
+
+$ bin/console messenger:failed:retry
+
+$ bin/console messenger:consume failed
+
+$ bin/console messenger:failed:remove 20 30</code></pre>
+            </section>
+            <section>
+                <h3>Message routing</h3>
+                <pre><code># config/packages/messenger.yaml
+framework:
+    messenger:
+        routing:
+            'Facile\Messenger\Priority0Message': 'priority_0'
+            'Facile\Messenger\Priority1Message': 'priority_1'
+            'Facile\Messenger\Priority2Message': 'priority_2'
+            'Facile\Messenger\Priority3Message': 'priority_3'
+            '*': 'async'
+</code></pre>
             </section>
         </section>
         <section>
             <section>
-                <h3>Pitfalls and limitations</h3>
+                <h1>Advanced consumer usages</h1>
+            </section>
+            <section>
+                <h3>Using one consumer for multiple queues</h3>
+                One consumer for all queues
+                <pre><code>$ bin/console messenger:consume -vv priority_0 priority_1 priority_2 priority_3</code></pre>
+                Two consumers "helping each other"
+                <pre><code>$ bin/console messenger:consume -vv queue_1 queue_2
+$ bin/console messenger:consume -vv queue_2 queue_1</code></pre>
+            </section>
+            <section>
+                <h3>Automatic terminations</h3>
+                <pre><code>$ bin/console messenger:consume -vv async \
+    --limit=10 \         # after 10 consumed messages
+    --failure-limit=3 \  # after 3 failures
+    --time-limit=3600 \  # after 1 hour
+    --memory-limit=128M  # when reaching memory peak</code></pre>
+                <a class="fragment" href="https://github.com/facile-it/terminable-loop-command">facile-it/terminable-loop-command</a>
+                <div class="fragment">
+                <pre><code>command:
+ - bin/terminable-loop-command.sh
+ - php
+ - '-d=memory_limit=256M'
+ - bin/console
+ - messenger:consume
+ - --memory-limit=200M
+ - -v
+ - messages
+</code></pre>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>Pitfalls and limitations</h1>
+            </section>
+            <section>
+                <h3>Serialization by default is not JSON</h3>
+                <pre><code># config/packages/messenger.yaml
+framework:
+    messenger:
+        serializer:
+            symfony_serializer:
+                format: json
+                context: { }
+
+            # by default on all transports
+            default_serializer: messenger.transport.symfony_serializer
+
+        transports:
+            async_priority_normal:
+                # on a specific transport
+                serializer: messenger.transport.symfony_serializer
+</code></pre>
+            </section>
+            <section>
+                <h3>Test tricks</h3>
+                <p>Force serialization with <code>inmemory</code> transport</p>
+                <pre><code># config/packages/test/messenger.yaml
+framework:
+    messenger:
+        transports:
+            async_priority_normal: 'in-memory://?serialize=true'</code></pre>
+                <p>Check what's being dispatched in functional tests</p>
+                <pre><code>/** @var InMemoryTransport $transport */
+$transport = $this->getContainer()->get('messenger.transport.async_priority_normal');
+
+$this->assertCount(1, $transport->getSent());
+$this->assertContainsOnlyInstancesOf(MyMessage::class, $transport->getSent());</code></pre>
+                
+            </section>
+            <section>
+                <h3>A failure transport is still a transport</h3>
+                <p>By default, after 3 retries from the failure transport, the message will be discarded</p>
+                <pre><code># config/packages/test/messenger.yaml
+framework:
+    messenger:
+        transports:
+            failed:
+                dsn: 'doctrine://default?queue_name=failed'
+                retry_strategy:
+                    max_retries: 999999
+                    # or
+                    service: Facile\Messenger\AlwaysRetryStrategy</code></pre>
+            </section>
+            <section>
+                <h3>Abstraction hides transport limitations</h3>
                 <ul>
-                    <li>serialization by default is not JSON</li>
-                    <li>test serialization with inmemory</li>
-                    <li>abstraction hides transport limitations</li>
-                    <li>Doctrine is not high throughtput</li>
+                    <li>Doctrine is not ideal for high throughput</li>
                     <li>SQS has 15 minutes delay limitation</li>
+                    <li>RabbitMQ does polling, not fetch</li>
                 </ul>
             </section>
         </section>
