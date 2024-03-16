@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="dist/theme/facile-engineering.css">
     <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico"/>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/intellij-light.min.css">
 </head>
@@ -68,54 +65,113 @@
             </section>
         </section>
         <section>
-            <section>
-                <h1>Story time...</h1>
-            </section>
             <section data-background-image="img/seen_things.gif">
                 <h3 style="padding-bottom: 3em">Nearly 10 years in Facile.it..</h3>
             </section>
             <section>
                 <h3>First project...</h3>
-                <ul>
-                    <li>Simple (but big) Symfony 2 app</li>
-                    <li>Classic LAMP stack</li>
-                    <li>Bare metal hosting, external sysadmins</li>
+                <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fab fa-symfony"></i></span>
+                        Simple (but big) Symfony 2 app
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-feather-alt"></i></span>
+                        Classic LAMP stack
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-hard-hat"></i></span>
+                        Bare metal hosting, external sysadmins
+                    </li>
                 </ul>
-            </section>
-            <section>
-                <h3>The need for a queue</h3>
-                <ul>
-                    <li>Long elaborations</li>
-                    <li>Delaying an action/check</li>
-                    <li>Handling external deps</li>
-                    <li>Concatenation of HTTP calls leads to low reliability</li>
-                </ul>
+                <div class="fragment" style="margin-top: 1em">
+                    <h3>We needed a queue</h3>
+                    <ul class="fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-hourglass-half"></i></span>
+                            Long elaborations
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-history"></i></span>
+                            Delaying an action/check
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-network-wired"></i></span>
+                            Handling external deps
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-dumpster-fire"></i></span>
+                            Concatenation of HTTP calls leads to low reliability
+                        </li>
+                    </ul>
+                </div>
             </section>
             <section>
                 <h3>The first experiment: MySQL</h3>
-                <ul>
-                    <li>A dedicated table</li>
-                    <li>One row, one job</li>
-                    <li>A column acting as a "lock"</li>
-                    <li>A <code>SELECT FOR UPDATE</code> query</li>
-                    <li class="fragment">...up to 2 hours of delay on replica nodes</li>
+                <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-table"></i></span>
+                        A dedicated table
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-stream"></i></span>
+                        One row, one job
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-lock"></i></span>
+                        A column acting as a "lock"
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-exclamation-triangle"></i></span>
+                        A <code>SELECT FOR UPDATE</code> query...
+                    </li>
+                    <li class="fragment" style="font-weight: bolder">
+                        <span class="fa-li"><i class="fas fa-skull-crossbones"></i></span>
+                        ...up to 2 hours of delay on replica nodes <br/>
+                        <img src="img/fire.gif" />
+                    </li>
                 </ul>
             </section>
             <section>
-                <h3>The real queue: RabbitMQ</h3>
-                <ul>
-                    <li>PHP 5.4</li>
-                    <li><code>ext-amqp</code> was not stable</li>
-                    <li>OldSoundBundle too</li>
-                    <li>So, we wrote our own system</li>
-                </ul>
+                <h3>A real queue system:</h3>
+                <div>
+                    <img src="img/rabbitmq-logo.png" class="r-stretch" alt="RabbitMQ logo" style="padding: 0 3em 0; width: 80%"/>
+                    <p style="text-align: left; padding: 0 9em 0">But....</p>
+                    <ul class="fragment fa-ul">
+                        <li>
+                            <span class="fa-li"><i class="fab fa-php"></i></span>
+                            PHP 5.4
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-bug"></i></span>
+                            <code>ext-amqp</code> was not stable
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-box-open"></i></span>
+                            OldSoundBundle too
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-laptop-code"></i></span>
+                            So, we wrote our own system
+                        </li>
+                    </ul>
+                </div>
             </section>
             <section>
                 <h3>Other projects...</h3>
-                <ul>
-                    <li>New, separate project</li>
-                    <li>Different DB (Mongo)</li>
-                    <li>No time to extract a package</li>
+                <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-code-branch"></i></span>
+                        New, separate project
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-leaf"></i></span>
+                        Different DB (MongoDB)
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-paste"></i></span>
+                        No time to extract a package
+                    </li>
                 </ul>
             </section>
             <section data-background-image="img/symfonycon-2019.png">
@@ -126,8 +182,8 @@
         </section>
 
         <section>
-            <section>
-                <h1>Usage</h1>
+            <section data-background-image="img/bob-the-builder.gif">
+                <h2 style="padding-bottom: 8em;">Let's see code!</h2>
             </section>
             <section>
                 <h2>Installation</h2>
@@ -136,20 +192,17 @@
             </section>
             <section>
                 <code>packages/messenger.yaml</code>
-                <pre class="stretch"><code>framework:
+                <pre class="stretch"><code data-line-numbers="|5-8|3-8|10-12|13-19">framework:
     messenger:
-        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
-        # failure_transport: failed
+        failure_transport: failed
 
         transports:
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+            sync: 'sync://'
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            failed: 'doctrine://default?queue_name=failed'
 
         routing:
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'App\Message\YourMessage': async
 
 # when@test:
 #    framework:
@@ -161,6 +214,16 @@
 </code></pre>
             </section>
             <section>
+                <h3>Many available Transports</h3>
+                RabbitMQ: <code>symfony/amqp-messenger</code>
+                <pre><code class="bash">MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages</code></pre>
+                Doctrine/DBAL: <code>symfony/doctrine-messenger</code>
+                <pre><code class="bash">MESSENGER_TRANSPORT_DSN=doctrine://default</code></pre>
+                MongoDB: <code>facile-it/mongodb-messenger-transport</code>
+                <pre><code class="bash">MESSENGER_TRANSPORT_DSN=facile-it-mongodb://my-connection</code></pre>
+                And many more... you can also use Enqueue <br/> through <code>sroze/messenger-enqueue-transport</code>
+            </section>
+            <section>
                 <h3>Dispatching a message</h3>
                 <pre><code>class CompressImage
 {
@@ -168,7 +231,7 @@
         public readonly int $imageId,
     ) {}
 }</code></pre>
-                <pre><code>#[AsController]
+                <pre class="fragment"><code data-line-numbers="|5|11">#[AsController]
 class FooController
 {
     public function __construct(
@@ -185,18 +248,8 @@ class FooController
 }</code></pre>
             </section>
             <section>
-                <h3>Making the real work: async transports</h3>
-                RabbitMQ: <code>symfony/amqp-messenger</code>
-                <pre><code># MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages</code></pre>
-                Doctrine/DBAL: <code>symfony/doctrine-messenger</code>
-                <pre><code># MESSENGER_TRANSPORT_DSN=doctrine://default</code></pre>
-                Redis: <code>composer require symfony/redis-messenger</code>
-                <pre><code># MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages</code></pre>
-                For more, you can use Enqueue <br/> through <code>sroze/messenger-enqueue-transport</code>
-            </section>
-            <section>
                 <h3>Consuming a message</h3>
-                <pre><code>#[AsMessageHandler]
+                <pre><code data-line-numbers="|1|4|">#[AsMessageHandler]
 class CompressImageHandler
 {
     public function __invoke(CompressImage $message): void
@@ -210,17 +263,18 @@ class CompressImageHandler
         // ...
     }
 }</code></pre>
-                <pre><code>$ bin/console messenger:consume async -vv</code></pre>
+                <pre class="fragment"><code>$ bin/console messenger:consume async -vv</code></pre>
             </section>
         </section>
         
         <section>
-            <section>
-                <h1>Advanced features</h1>
+            <section data-background-image="img/complex-gears.gif">
+                <h1 style="text-shadow: 4px 0 #fff, -4px 0 #fff, 0 4px #fff, 0 -4px #fff,
+               2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;">Advanced features</h2>
             </section>
             <section>
                 <h3>Envelope and stamps</h3>
-                <pre><code>use Symfony\Component\Messenger\Envelope;
+                <pre><code class="php">use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Stamp\SerializerStamp;
 
 $bus->dispatch(
@@ -230,13 +284,13 @@ $bus->dispatch(
         'groups' => ['my_serialization_groups'],
     ]))
 );</code></pre>
-                <pre class="fragment"><code>use Symfony\Component\Messenger\Stamp\DelayStamp;
+                <pre class="fragment php"><code>use Symfony\Component\Messenger\Stamp\DelayStamp;
 
 $bus->dispatch($message, [new DelayStamp(3000)]);</code></pre>
             </section>
             <section>
                 <h3>Automatic retries</h3>
-                <pre class="stretch"><code># config/packages/messenger.yaml
+                <pre class="stretch"><code class="yaml" data-line-numbers="|5-9|10|12-13|15-18|20-22"># config/packages/messenger.yaml
 framework:
     messenger:
         transports:
@@ -261,7 +315,7 @@ framework:
             </section>
             <section>
                 <h3>Failed transport</h3>
-                <pre><code># config/packages/messenger.yaml
+                <pre><code class="yaml"># config/packages/messenger.yaml
 framework:
     messenger:
         # after retrying, messages will be sent to the "failed" transport
@@ -281,7 +335,7 @@ $ bin/console messenger:failed:remove 20 30</code></pre>
             </section>
             <section>
                 <h3>Message routing</h3>
-                <pre><code># config/packages/messenger.yaml
+                <pre><code class="yaml"># config/packages/messenger.yaml
 framework:
     messenger:
         routing:
@@ -294,25 +348,31 @@ framework:
             </section>
         </section>
         <section>
-            <section>
-                <h1>Advanced consumer usages</h1>
+            <section data-background-image="img/complex-gears.gif">
+                <h1 style="text-shadow: 4px 0 #fff, -4px 0 #fff, 0 4px #fff, 0 -4px #fff,
+               2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;">Advanced consumer usages</h1>
             </section>
             <section>
                 <h3>Using one consumer for multiple queues</h3>
                 One consumer for all queues
                 <pre><code>$ bin/console messenger:consume -vv priority_0 priority_1 priority_2 priority_3</code></pre>
-                Two consumers "helping each other"
-                <pre><code>$ bin/console messenger:consume -vv queue_1 queue_2
+                <div class="fragment">
+                    Two consumers "helping each other"
+                    <pre><code>$ bin/console messenger:consume -vv queue_1 queue_2
 $ bin/console messenger:consume -vv queue_2 queue_1</code></pre>
+                </div>
             </section>
             <section>
                 <h3>Automatic terminations</h3>
-                <pre><code>$ bin/console messenger:consume -vv async \
+                <pre><code class="sh">$ bin/console messenger:consume -vv async \
     --limit=10 \         # after 10 consumed messages
     --failure-limit=3 \  # after 3 failures
     --time-limit=3600 \  # after 1 hour
     --memory-limit=128M  # when reaching memory peak</code></pre>
-                <a class="fragment" href="https://github.com/facile-it/terminable-loop-command">facile-it/terminable-loop-command</a>
+                <a class="fragment" href="https://github.com/facile-it/terminable-loop-command">
+                    <i class="fab fa-github"></i>
+                    <code>facile-it/terminable-loop-command</code>
+                </a>
                 <div class="fragment">
                 <pre><code>command:
  - bin/terminable-loop-command.sh
@@ -328,12 +388,12 @@ $ bin/console messenger:consume -vv queue_2 queue_1</code></pre>
             </section>
         </section>
         <section>
-            <section>
-                <h1>Pitfalls and limitations</h1>
+            <section data-background-image="img/coyote-falling.gif">
+                <h2 style="padding-top: 7em; color: white">Pitfalls and limitations</h2>
             </section>
             <section>
                 <h3>Serialization by default is not JSON</h3>
-                <pre><code># config/packages/messenger.yaml
+                <pre><code class="yaml" data-line-numbers="|3-7|9-10|13-15"># config/packages/messenger.yaml
 framework:
     messenger:
         serializer:
@@ -351,20 +411,42 @@ framework:
 </code></pre>
             </section>
             <section>
-                <h3>Test tricks</h3>
+                <h3>Test tricks 1/2</h3>
                 <p>Force serialization with <code>inmemory</code> transport</p>
-                <pre><code># config/packages/test/messenger.yaml
+                <pre><code class="yaml"># config/packages/test/messenger.yaml
 framework:
     messenger:
         transports:
             async_priority_normal: 'in-memory://?serialize=true'</code></pre>
                 <p>Check what's being dispatched in functional tests</p>
-                <pre><code>/** @var InMemoryTransport $transport */
+                <pre><code class="php">/** @var InMemoryTransport $transport */
 $transport = $this->getContainer()->get('messenger.transport.async_priority_normal');
 
 $this->assertCount(1, $transport->getSent());
 $this->assertContainsOnlyInstancesOf(MyMessage::class, $transport->getSent());</code></pre>
                 
+            </section>
+            <section>
+                <h3>Test tricks 2/2</h3>
+                Assert that all transports are empty at the end of each (functional) test
+                <pre class="stretch"><code class="php" data-line-numbers="|3-10|5|6|7-9|12-16">abstract class BaseFunctionalTestCase extends WebTestCase
+{                    
+    protected function ackMessage(): Envelope
+    {
+        $transport = $this->getContainer()->get('messenger.transport.async');
+        $firstEnvelope = array_shift($transport->get());
+        $transport->ack($firstEnvelope);
+
+        return $firstEnvelope;
+    }
+
+    protected function assertPostConditions(): void
+    {
+        foreach ($this->getAllTransports() as $name => $transport) {
+            $this->assertEmpty($transport->get(), 'Messages in transport ' . $name);
+        }
+    }
+}</code></pre>
             </section>
             <section>
                 <h3>A failure transport is still a transport</h3>
@@ -382,10 +464,19 @@ framework:
             </section>
             <section>
                 <h3>Abstraction hides transport limitations</h3>
-                <ul>
-                    <li>Doctrine is not ideal for high throughput</li>
-                    <li>SQS has 15 minutes delay limitation</li>
-                    <li>RabbitMQ does polling, not fetch</li>
+                <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-database"></i></span>
+                        Doctrine is not ideal for high throughput
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-clock"></i></span>
+                        SQS has 15 minutes delay limitation
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-ghost"></i></span>
+                        RabbitMQ does polling, not fetch
+                    </li>
                 </ul>
             </section>
         </section>
@@ -428,6 +519,7 @@ framework:
 <script src="dist/reveal.js"></script>
 <script src="plugin/notes/notes.js"></script>
 <script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
 <script src="plugin/zoom/zoom.js"></script>
 <script>
     // More info about initialization & config:
@@ -439,6 +531,7 @@ framework:
         height: 720,
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [
+            RevealHighlight,
             RevealMarkdown,
             RevealNotes,
             RevealZoom
