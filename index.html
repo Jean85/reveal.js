@@ -294,13 +294,12 @@ class CompressImageHandler
                 <pre><code class="php">use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Stamp\SerializerStamp;
 
-$bus->dispatch(
-    (new Envelope($message))->with(new SerializerStamp([
-        // groups are applied to the whole message, so make sure
-        // to define the group for every embedded object
+$envelope = (new Envelope($message))
+    ->with(new SerializerStamp([
         'groups' => ['my_serialization_groups'],
-    ]))
-);</code></pre>
+    ]));
+                    
+$bus->dispatch($envelope);</code></pre>
                 <pre class="fragment php"><code>use Symfony\Component\Messenger\Stamp\DelayStamp;
 
 $bus->dispatch($message, [new DelayStamp(3000)]);</code></pre>
@@ -490,7 +489,7 @@ framework:
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fas fa-database"></i></span>
-                        Doctrine is not ideal for high throughput
+                        Doctrine is not ideal for high contention
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-clock"></i></span>
